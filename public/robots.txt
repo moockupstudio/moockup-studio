@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# LLM Crawler Policies
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Sitemap & LLMs resources
+Sitemap: https://www.moockup.it/sitemap.xml

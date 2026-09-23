@@ -1,0 +1,27 @@
+/*
+Theme Name: Moockup Studio
+Theme URI: https://www.moockup.it
+Author: Moockup Studio
+Author URI: https://www.moockup.it
+Description: Tema WordPress ad altissime prestazioni per Moockup Studio (Foggia). Progettato specificamente per massimizzare la SEO locale, le campagne Google Ads e il ROAS. Include gestione completa da bacheca di testi, portfolio progetti (Custom Post Type), calcolatore ROI, landing page personalizzate e controlli On/Off per mostrare o nascondere ogni singolo div e sezione.
+Version: 1.0.0
+Requires at least: 6.0
+Tested up to: 6.7
+Requires PHP: 7.4
+Text Domain: moockup-studio
+Tags: dark-theme, responsive-layout, custom-post-type, customizer, landing-page, seo-friendly, translation-ready
+*/
+
+/* Reset & Base fallback */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #030712;
+  color: #f1f5f9;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  overflow-x: hidden;
+}
