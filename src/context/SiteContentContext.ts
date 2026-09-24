@@ -95,7 +95,12 @@ export const getInitialSiteContent = (): EditableSiteContent => {
 // Fetch from backend server so ALL end users see the full updated content (including uploaded images)
 export const fetchServerSiteContent = async (): Promise<EditableSiteContent | null> => {
   try {
-    const res = await fetch("/api/content");
+    const controller = typeof AbortController !== "undefined" ? new AbortController() : null;
+    const timeoutId = controller ? setTimeout(() => controller.abort(), 800) : null;
+    const res = await fetch("/api/content", { 
+      signal: controller ? controller.signal : undefined 
+    });
+    if (timeoutId) clearTimeout(timeoutId);
     if (res.ok) {
       const data = await res.json();
       if (data.success && data.content) {
@@ -109,7 +114,7 @@ export const fetchServerSiteContent = async (): Promise<EditableSiteContent | nu
       }
     }
   } catch (err) {
-    console.warn("Could not fetch site content from server", err);
+    // Graceful fallback to default/local content
   }
   return null;
 };
