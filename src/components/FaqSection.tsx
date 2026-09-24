@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { FAQ_DATA } from "../data/agencyData";
 import { ChevronDown, HelpCircle, ArrowRight } from "lucide-react";
 
@@ -14,8 +14,28 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenAudit, onOpenChat 
     setOpenIndex(openIndex === index ? null : index);
   };
 
+  // Schema.org FAQPage JSON-LD for rich snippets in Google SERP
+  const faqSchema = useMemo(() => ({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_DATA.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  }), []);
+
   return (
     <section id="faq" className="py-24 bg-[#0B0F1C] border-t border-slate-800/80 relative">
+      {/* Schema.org FAQPage Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-14">

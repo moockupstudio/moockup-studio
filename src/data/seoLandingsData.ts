@@ -857,6 +857,41 @@ export const SEO_SECTOR_LANDINGS: Record<string, SeoLanding> = {
       { q: "Possiamo pubblicare informazioni sul Bonus Mobili ed agevolazioni fiscali?", a: "Sì, una guida pratica alle detrazioni fiscali stimola i clienti ad acquistare prima della scadenza degli incentivi." },
       { q: "È possibile inserire una sezione outlet per rinnovi expo e pezzi unici da esposizione?", a: "Sì, per vendere rapidamente arredi scontati dello showroom con foto del prodotto reale e prezzo ribassato." }
     ]
+  },
+
+  "siti-web-erboristerie": {
+    slug: "siti-web-erboristerie",
+    category: "settore",
+    categoryLabel: "Erboristerie & Benessere Naturale",
+    keywordTarget: "realizzazione siti web per erboristerie",
+    title: "Siti Web per Erboristerie & Benessere Naturale",
+    badge: "Erboristeria & Fitoterapia",
+    heroHeadline: "Siti Web per Erboristerie, Tisane & Cosmesi Naturale",
+    heroSubheadline: "Valorizza la tradizione erboristica, la fitoterapia e i prodotti naturali: catalogo rimedi officinali, consulenza personalizzata via chat e vendita online con ritiro rapido o spedizione.",
+    metaTitle: "Realizzazione Siti Web per Erboristerie | Moockup Studio",
+    metaDescription: "Sviluppo siti web ed e-commerce per erboristerie. Fitoterapia, tisane officinali, cosmesi bio, consulenza su misura e ordini veloci.",
+    coverImage: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1200&q=80",
+    tagline: "La natura incontra il digitale: fai conoscere i tuoi rimedi erboristici e fidelizza clienti vicini e lontani.",
+    sectorOrCityHighlights: [
+      { title: "Catalogo Fitoterapico & Tisane", desc: "Schede prodotto chiare con indicazioni, ingredienti botanici, modalità d'uso e consigli d'assunzione." },
+      { title: "Consulenza Erboristica Personalizzata", desc: "Modulo o chat diretta per richiedere consigli mirati per sonno, difese immunitarie, digestione e depurazione." },
+      { title: "Click & Collect in Negozio", desc: "I clienti del territorio prenotano i prodotti dal sito e passano comodamente a ritirarli senza code." },
+      { title: "E-Commerce Cosmesi Bio & Integratori", desc: "Vendita online facile con spedizioni veloci, pagamenti sicuri e programmi fedeltà." },
+    ],
+    includedFeatures: [
+      "Catalogo organizzato per esigenze (sonno, stress, digestione, pelle, difese)",
+      "Canale WhatsApp diretto per consulenze su misura",
+      "Blog con approfondimenti sulle proprietà delle erbe officinali",
+      "Integrazione Google Maps per trovare subito il negozio",
+    ],
+    metricsTarget: "+75% di ordini continuativi per rimedi stagionali e tisane",
+    faqList: [
+      { q: "Possiamo vendere online tisane, integratori e cosmesi naturale?", a: "Sì, possiamo integrare un e-commerce agile e veloce conforme a tutte le normative su etichettatura e integratori." },
+      { q: "Come possono i clienti chiedere consigli su quale prodotto scegliere?", a: "Integriamo pulsanti rapidi WhatsApp e form di contatto dedicati alle esigenze specifiche (es. sonno, stress, energia)." },
+      { q: "È possibile attivare il servizio di ritiro in erboristeria?", a: "Sì, il cliente ordina online e ritira direttamente in negozio con opzione Click & Collect a costo zero." },
+      { q: "Possiamo pubblicare articoli informativi sui benefici delle piante officinali?", a: "Certamente, una sezione blog erboristica posiziona il sito su Google per ricerche come rimedi per il sonno o depurazione." },
+      { q: "Il sito è conforme alle norme su privacy e tracciamento?", a: "Sì, privacy policy, cookie banner Iubenda e certificati SSL garantiti al 100%." }
+    ]
   }
 };
 

@@ -119,12 +119,12 @@ export default function App() {
     setActiveLandingSlug(null);
     window.history.pushState({}, "", "/");
     // Restore default homepage meta
-    document.title = "Moockup Studio | Realizzazione Siti Web Foggia, SEO & Google Ads";
+    document.title = "Realizzazione Siti Web, SEO & Google Ads | MOOCKUP";
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {
       metaDesc.setAttribute(
         "content",
-        "Agenzia specializzata nella realizzazione di siti web a Foggia e in tutta Italia. Posizionamento SEO su Google nei primi risultati, e-commerce veloci e campagne Google Ads orientate al ROI."
+        "Realizzazione siti web moderni a Foggia e in tutta Italia, posizionamento SEO organico su Google e gestione campagne Google Ads ad alto ROI."
       );
     }
     window.scrollTo({ top: 0, behavior: "smooth" });

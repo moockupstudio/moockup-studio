@@ -26,7 +26,8 @@ import {
   KeyRound,
   Sparkle,
   Camera,
-  Armchair
+  Armchair,
+  Leaf
 } from "lucide-react";
 
 interface SeoDirectorySectionProps {
@@ -61,6 +62,7 @@ const getSectorIcon = (slug: string) => {
     case "siti-web-centri-estetici": return Sparkle;
     case "siti-web-fotografi": return Camera;
     case "siti-web-negozi-arredamento": return Armchair;
+    case "siti-web-erboristerie": return Leaf;
     default: return Building2;
   }
 };

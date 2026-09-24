@@ -1,11 +1,28 @@
+# Robots.txt for Moockup Studio (https://www.moockup.it)
 User-agent: *
 Allow: /
 
-# LLM Crawler Policies
+# Google Search & Services
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+# LLM & AI Search Engine Bots (SearchGPT, ChatGPT, Claude, Perplexity, Gemini, Apple Intelligence)
 User-agent: GPTBot
 Allow: /
 
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
 User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
 Allow: /
 
 User-agent: PerplexityBot
@@ -14,5 +31,20 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-# Sitemap & LLMs resources
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+# Canonical Sitemaps & Machine-Readable Context
 Sitemap: https://www.moockup.it/sitemap.xml
