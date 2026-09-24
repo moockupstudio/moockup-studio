@@ -188,13 +188,6 @@ export const Footer: React.FC<FooterProps> = ({
           <div className="leading-relaxed">
             © 2026 MOOCKUP STUDIO | P.IVA 04242600718 - Tutti i diritti riservati.
           </div>
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-slate-500 text-[11px] sm:text-xs">
-            <span className="hover:text-slate-300 cursor-pointer">Privacy Policy</span>
-            <span>•</span>
-            <span className="hover:text-slate-300 cursor-pointer">Cookie Policy</span>
-            <span>•</span>
-            <span className="hover:text-slate-300 cursor-pointer">Termini di Servizio</span>
-          </div>
         </div>
       </div>
     </footer>

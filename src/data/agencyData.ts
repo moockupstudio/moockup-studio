@@ -596,6 +596,7 @@ export const PORTFOLIO_DATA: ProjectItem[] = [
     category: "siti-web",
     categoryLabel: "Brand Identity, Sito Web & SEO",
     heroImage: mbStrategyImg,
+    url: "https://www.mbstrategy.it",
     services: ["Logo Design","Brand Identity","Sito Web","SEO","Print e Marketing Offline"],
     tags: ["Brand Identity", "Sito Web Moderno", "SEO Strategica", "Corporate"],
     summary: "Progettazione completa della brand identity aziendale, sviluppo di un sito web moderno orientato alla conversione e strategia di posizionamento SEO.",
