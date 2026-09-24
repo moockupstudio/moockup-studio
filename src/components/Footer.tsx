@@ -23,7 +23,7 @@ export const Footer: React.FC<FooterProps> = ({
           <div className="space-y-4">
             <Logo size="md" showTagline={true} />
             <p className="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-sm">
-              Moockup Studio è l'agenzia digitale specializzata nella creazione di siti web moderni ad altissime prestazioni, posizionamento SEO organico su Google e strategie omnicanale su tutto il territorio nazionale.
+              Moockup Studio è l'agenzia specializzata in <strong>realizzazione siti web a Foggia</strong> e in tutta Italia, <strong>posizionamento SEO su Google</strong>, <strong>gestione campagne Google Ads</strong> orientate al ROI e strategie di <strong>link building</strong> autorevoli.
             </p>
             <div className="pt-2 text-xs text-slate-300 space-y-2 font-medium">
               <div className="flex items-center gap-2">

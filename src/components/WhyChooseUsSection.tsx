@@ -32,7 +32,7 @@ export const WhyChooseUsSection: React.FC<WhyChooseUsSectionProps> = ({ onOpenAu
     {
       id: "crescita-obiettivo",
       title: "Crescita come",
-      highlight: "obiettivo",
+      highlight: "Obiettivo",
       desc: "Non ci limitiamo a consegnare un sito: progettiamo la tua espansione, trasformando ogni euro investito in contatti e vendite.",
       icon: TrendingUp,
       color: "from-pink-500 to-rose-500",
@@ -56,7 +56,7 @@ export const WhyChooseUsSection: React.FC<WhyChooseUsSectionProps> = ({ onOpenAu
     {
       id: "marketing-data-driven",
       title: "Marketing",
-      highlight: "data driven",
+      highlight: "Data Driven",
       desc: "Decisioni basate su numeri reali, test A/B continui, metriche GA4 e tracciamenti sia Client-Side che Server-Side con Enhanced Conversions.",
       icon: BarChart2,
       color: "from-purple-500 to-pink-500",
@@ -67,8 +67,8 @@ export const WhyChooseUsSection: React.FC<WhyChooseUsSectionProps> = ({ onOpenAu
     },
     {
       id: "processi-snelli",
-      title: "Processi snelli ed",
-      highlight: "efficienti",
+      title: "Processi Snelli ed",
+      highlight: "Efficienti",
       desc: "Niente burocrazia o attese infinite. Comunicazione diretta, rilasci veloci e iterazioni puntuali per essere subito operativi.",
       icon: Zap,
       color: "from-amber-500 to-rose-500",
@@ -80,7 +80,7 @@ export const WhyChooseUsSection: React.FC<WhyChooseUsSectionProps> = ({ onOpenAu
     {
       id: "sempre-al-tuo-fianco",
       title: "Sempre",
-      highlight: "al tuo fianco",
+      highlight: "Al Tuo Fianco",
       desc: "Un partner strategico sempre reperibile al telefono o su WhatsApp per supportare la tua azienda in ogni fase di crescita.",
       icon: HeartHandshake,
       color: "from-emerald-500 to-teal-500",
@@ -103,9 +103,9 @@ export const WhyChooseUsSection: React.FC<WhyChooseUsSectionProps> = ({ onOpenAu
             <ShieldCheck className="w-3.5 h-3.5" />
             <span>Valore Concreto & Affidabilità</span>
           </div>
-          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight mb-4">
+          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight mb-4 leading-tight">
             Perché{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 via-pink-400 to-rose-400">
+            <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 via-pink-400 to-rose-400 pr-2 pb-1">
               sceglierci?
             </span>
           </h2>
@@ -137,21 +137,21 @@ export const WhyChooseUsSection: React.FC<WhyChooseUsSectionProps> = ({ onOpenAu
                     />
 
                     {/* Gradient pulse badge */}
-                    <div className="relative z-10 flex flex-col items-center gap-3">
+                    <div className="relative z-10 flex flex-col items-center gap-3 w-full px-3">
                       <div className={`w-14 h-14 rounded-2xl bg-gradient-to-tr ${point.color} text-white flex items-center justify-center shadow-lg shadow-pink-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300`}>
                         <Icon className="w-7 h-7" />
                       </div>
-                      <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/90 border border-slate-700/60 text-[11px] font-medium text-slate-300 backdrop-blur-md">
-                        <CheckCircle2 className="w-3 h-3 text-emerald-400" />
-                        <span>{point.badge}</span>
+                      <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/90 border border-slate-700/60 text-[11px] font-medium text-slate-300 backdrop-blur-md max-w-full">
+                        <CheckCircle2 className="w-3 h-3 text-emerald-400 shrink-0" />
+                        <span className="truncate">{point.badge}</span>
                       </div>
                     </div>
                   </div>
 
-                  {/* Title with styled italics matching screenshot */}
-                  <h3 className="font-display font-bold text-xl sm:text-2xl text-white mb-2.5">
-                    {point.title}{" "}
-                    <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-fuchsia-400">
+                  {/* Title on a single line */}
+                  <h3 className="font-display font-bold text-base sm:text-lg lg:text-[17px] xl:text-xl text-white mb-3 tracking-tight leading-snug">
+                    <span className="text-slate-100">{point.title} </span>
+                    <span className="inline-block italic text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-fuchsia-400 pr-2 pb-0.5">
                       {point.highlight}
                     </span>
                   </h3>

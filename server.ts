@@ -63,7 +63,7 @@ app.post("/api/chat", async (req, res) => {
     const systemInstruction = `Sei l'assistente consulente virtuale di "Moockup Studio" (riferimento: www.moockup.it, email: moockupstudio@gmail.com), agenzia italiana di alto livello specializzata in:
 1. Creazione e Sviluppo Siti Web & E-Commerce ad altissime prestazioni (PageSpeed 95+, UX studiata per la massima conversione, design moderno e mobile-first, Shopify, WooCommerce, Headless/Next.js/React).
 2. SEO & Posizionamento su Google (SEO tecnica, ottimizzazione on-page/off-page, Keyword research strategica, local SEO e aumento traffico organico qualificato).
-3. SEM & Google Ads (Specialisti certificati Google Ads: campagne Search mirate all'intento d'acquisto, Performance Max, Google Shopping, tracciamenti avanzati Server-Side GA4/GTM, abbattimento del Costo per Acquisizione / CPA e massimizzazione del ROAS).
+3. SEM & Google Ads (Specialisti in Google Ads: campagne Search mirate all'intento d'acquisto, Performance Max, Google Shopping, tracciamenti avanzati Server-Side GA4/GTM, abbattimento del Costo per Acquisizione / CPA e massimizzazione del ROAS).
 
 Il tuo obiettivo è:
 - Rispondere in italiano in modo professionale, caloroso, chiaro, competente e orientato alla conversione.
@@ -79,7 +79,7 @@ Il tuo obiettivo è:
       if (lower.includes("prezzo") || lower.includes("costo") || lower.includes("preventivo")) {
         reply += "I nostri progetti sono su misura in base agli obiettivi aziendali: siti vetrina professionali da 1.200€, e-commerce completi da 2.500€ e gestione campagne Google Ads con strategia ROI. Puoi anche usare il calcolatore interattivo sul sito o richiederci un audit gratuito!";
       } else if (lower.includes("google ads") || lower.includes("ads") || lower.includes("campagn")) {
-        reply += "Siamo specialisti certificati Google Ads. Strutturiamo campagne Search, Shopping e Performance Max con tracciamento avanzato delle conversioni (GA4 e Server-Side) per massimizzare il ROAS e abbassare il CPA.";
+        reply += "Siamo specialisti nella gestione di campagne Google Ads. Strutturiamo campagne Search, Shopping e Performance Max con tracciamento avanzato delle conversioni (GA4 e Server-Side) per massimizzare il ROAS e abbassare il CPA.";
       } else if (lower.includes("seo") || lower.includes("posizionamento") || lower.includes("google")) {
         reply += "Lavoriamo sulla SEO a 360°: audit tecnico dei Core Web Vitals, architettura delle informazioni, keyword strategy focalizzata sull'intento di acquisto e link building di qualità per portarti ai primi posti di Google.";
       } else {

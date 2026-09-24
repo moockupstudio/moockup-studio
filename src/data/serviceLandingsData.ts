@@ -50,11 +50,11 @@ export const SERVICE_LANDINGS: Record<string, ServiceLanding> = {
   "sem": {
     slug: "sem",
     title: "SEM & Campagne Google Ads",
-    badge: "Specialisti Certificati Google Ads",
+    badge: "Specialisti Gestione Campagne Google Ads",
     heroHeadline: "Campagne Google Ads ad Alto Rendimento: Più Lead Qualificati, Meno Sprechi",
     heroSubheadline: "Gestiamo campagne Search, Shopping e Performance Max con approccio scientifico orientato al ROAS e monitoraggio avanzato sia Client-Side che Server-Side.",
     metaTitle: "Campagne Google Ads & SEM Foggia | Moockup Studio",
-    metaDescription: "Specialisti Google Ads certificati. Massimizza il ritorno sull'investimento pubblicitario con campagne Search e Performance Max ad alto rendimento.",
+    metaDescription: "Specialisti in campagne Google Ads. Massimizza il ritorno sull'investimento pubblicitario con campagne Search e Performance Max ad alto rendimento.",
     coverImage: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&w=1200&q=80",
     tagline: "Basta bruciare budget con click curiosi: intercettiamo solo persone con un chiaro e immediato intento di acquisto.",
     whyChoosePoints: [

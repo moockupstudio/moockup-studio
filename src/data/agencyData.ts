@@ -62,10 +62,10 @@ export const SERVICES_DATA: ServiceDetail[] = [
     id: "sem-google-ads",
     icon: "Target",
     title: "SEM & Campagne Google Ads",
-    subtitle: "Specialisti certificati Google Ads. Acquisizione clienti scalabile e ROAS elevato",
+    subtitle: "Specialisti in campagne Google Ads. Acquisizione clienti scalabile e ROAS elevato",
     description: "Massimizziamo ogni singolo euro investito. Strutturiamo campagne Google Ads Search, Shopping e Performance Max mirate esclusivamente a utenti pronti ad acquistare o a richiedere un preventivo. Riduciamo il Costo per Acquisizione (CPA) grazie a tracciamenti avanzati e landing page dedicate.",
     highlights: [
-      "Specialisti Certificati Google Ads con oltre 2.4M€ di spesa gestita",
+      "Specialisti in Campagne Google Ads con oltre 2.4M€ di spesa gestita",
       "Campagne Search ad altissimo intento d'acquisto commerciale",
       "Performance Max & Shopping feeds ottimizzati al millimetro",
       "Tracciamenti sia Client-Side che Server-Side con Enhanced Conversions di Google",

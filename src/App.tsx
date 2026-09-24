@@ -16,6 +16,7 @@ import { SERVICE_LANDINGS } from "./data/serviceLandingsData";
 import { SeoLandingPageView } from "./components/SeoLandingPageView";
 import { ALL_SEO_LANDINGS } from "./data/seoLandingsData";
 import { SeoDirectorySection } from "./components/SeoDirectorySection";
+import { AboutSeoSection } from "./components/AboutSeoSection";
 import { 
   getInitialSiteContent, 
   fetchServerSiteContent,
@@ -209,6 +210,12 @@ export default function App() {
         {/* User Section 2: "Perchè sceglierci?" 6-box Bento matching uploaded screenshot */}
         <WhyChooseUsSection 
           onOpenAudit={() => handleOpenAudit()}
+        />
+
+        {/* SEO Overview & Core Pillars Section: Realizzazione Siti Web, SEO & Google Ads */}
+        <AboutSeoSection 
+          onOpenAudit={() => handleOpenAudit()}
+          onOpenChat={handleOpenChat}
         />
 
         {/* Portfolio & Projects Showcase */}

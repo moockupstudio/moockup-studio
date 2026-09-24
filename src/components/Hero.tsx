@@ -63,11 +63,16 @@ export const Hero: React.FC<HeroProps> = ({
             </span>
           </div>
 
-          {/* Main Power Headline: Exactly 3 balanced lines on mobile (2 White, 1 Pink Gradient) */}
-          <h1 className="font-display font-extrabold text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-white tracking-tight leading-[1.18] sm:leading-[1.1] mb-5 sm:mb-6">
-            <span className="block sm:inline">Non Semplici Siti.</span>{" "}
-            <span className="block mt-1 sm:mt-2 text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 via-pink-400 to-rose-400">
-              Generiamo Successo.
+          {/* Main H1 Headline for SEO and high impact: Realizzazione Siti Web, SEO & Google Ads */}
+          <h1 className="font-display font-extrabold tracking-tight mb-5 sm:mb-6">
+            <span className="block text-xs sm:text-sm font-bold uppercase tracking-widest text-fuchsia-400 mb-2">
+              Realizzazione Siti Web, SEO & Campagne Google Ads
+            </span>
+            <span className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-[1.18] sm:leading-[1.1]">
+              <span className="block sm:inline">Non Semplici Siti.</span>{" "}
+              <span className="block mt-1 sm:mt-2 text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 via-pink-400 to-rose-400">
+                Generiamo Successo.
+              </span>
             </span>
           </h1>
 
