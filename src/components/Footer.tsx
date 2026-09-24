@@ -15,7 +15,7 @@ export const Footer: React.FC<FooterProps> = ({
   onOpenLanding
 }) => {
   return (
-    <footer className="bg-[#060911] border-t border-slate-800 text-slate-400 pt-12 pb-14 sm:py-16">
+    <footer className="bg-[#060911] border-t border-slate-800 text-slate-400 pt-12 pb-4 sm:pt-16 sm:pb-6">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
           
@@ -184,9 +184,12 @@ export const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* Bottom copyright - Mobile friendly & cleanly wrapped */}
-        <div className="mt-10 sm:mt-14 pt-6 sm:pt-8 border-t border-slate-800/80 flex flex-col items-center sm:flex-row sm:justify-between gap-4 text-xs text-slate-400 text-center sm:text-left">
+        <div className="mt-8 sm:mt-10 pt-5 sm:pt-6 border-t border-slate-800/80 flex flex-col items-center sm:flex-row sm:justify-between gap-3 text-xs text-slate-400 text-center sm:text-left">
           <div className="leading-relaxed">
-            © 2026 MOOCKUP STUDIO | P.IVA 04242600718 - Tutti i diritti riservati.
+            <span>© 2026 MOOCKUP STUDIO | P.IVA 04242600718</span>
+            <span className="block sm:inline sm:before:content-['\00a0-\00a0'] text-slate-500 sm:text-slate-400">
+              Tutti i diritti riservati.
+            </span>
           </div>
         </div>
       </div>
