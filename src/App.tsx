@@ -1,27 +1,27 @@
-import React, { useState, useEffect, lazy, Suspense } from "react";
+import React, { useState, useEffect } from "react";
 import { Navbar } from "./components/Navbar";
 import { Hero } from "./components/Hero";
 import { ServicesGrid } from "./components/ServicesGrid";
+import { PortfolioSection } from "./components/PortfolioSection";
 import { WhyChooseUsSection } from "./components/WhyChooseUsSection";
-import { AboutSeoSection } from "./components/AboutSeoSection";
+import { ProcessSection } from "./components/ProcessSection";
+import { TestimonialsSection } from "./components/TestimonialsSection";
+import { FaqSection } from "./components/FaqSection";
+import { ContactSection } from "./components/ContactSection";
 import { Footer } from "./components/Footer";
-import { SERVICE_SLUGS, SEO_SLUGS } from "./data/slugs";
+import { LiveChat } from "./components/LiveChat";
+import { AuditModal } from "./components/AuditModal";
+import { ServiceLandingPage } from "./components/ServiceLandingPage";
+import { SERVICE_LANDINGS } from "./data/serviceLandingsData";
+import { SeoLandingPageView } from "./components/SeoLandingPageView";
+import { ALL_SEO_LANDINGS } from "./data/seoLandingsData";
+import { SeoDirectorySection } from "./components/SeoDirectorySection";
+import { AboutSeoSection } from "./components/AboutSeoSection";
 import { 
   getInitialSiteContent, 
   fetchServerSiteContent,
   EditableSiteContent 
 } from "./context/SiteContentContext";
-
-// Code-split below-the-fold sections, interactive modals, chat and landing page bundles
-const PortfolioSection = lazy(() => import("./components/PortfolioSection").then(m => ({ default: m.PortfolioSection })));
-const ProcessSection = lazy(() => import("./components/ProcessSection").then(m => ({ default: m.ProcessSection })));
-const SeoDirectorySection = lazy(() => import("./components/SeoDirectorySection").then(m => ({ default: m.SeoDirectorySection })));
-const FaqSection = lazy(() => import("./components/FaqSection").then(m => ({ default: m.FaqSection })));
-const ContactSection = lazy(() => import("./components/ContactSection").then(m => ({ default: m.ContactSection })));
-const LiveChat = lazy(() => import("./components/LiveChat").then(m => ({ default: m.LiveChat })));
-const AuditModal = lazy(() => import("./components/AuditModal").then(m => ({ default: m.AuditModal })));
-const ServiceLandingContainer = lazy(() => import("./components/ServiceLandingContainer"));
-const SeoLandingContainer = lazy(() => import("./components/SeoLandingContainer"));
 
 export default function App() {
   const [siteContent, setSiteContent] = useState<EditableSiteContent>(getInitialSiteContent);
@@ -36,7 +36,7 @@ export default function App() {
     const cleanPath = path.startsWith("servizi/") ? path.replace("servizi/", "") : path;
     const cleanHash = hash.startsWith("servizi/") ? hash.replace("servizi/", "") : hash;
     const candidate = cleanPath || cleanHash;
-    if (candidate && (SERVICE_SLUGS.has(candidate) || SEO_SLUGS.has(candidate))) {
+    if (candidate && (SERVICE_LANDINGS[candidate] || ALL_SEO_LANDINGS[candidate])) {
       return candidate;
     }
     return null;
@@ -50,7 +50,7 @@ export default function App() {
       const cleanPath = path.startsWith("servizi/") ? path.replace("servizi/", "") : path;
       const cleanHash = hash.startsWith("servizi/") ? hash.replace("servizi/", "") : hash;
       const candidate = cleanPath || cleanHash;
-      if (candidate && (SERVICE_SLUGS.has(candidate) || SEO_SLUGS.has(candidate))) {
+      if (candidate && (SERVICE_LANDINGS[candidate] || ALL_SEO_LANDINGS[candidate])) {
         setActiveLandingSlug(candidate);
       } else {
         setActiveLandingSlug(null);
@@ -60,31 +60,19 @@ export default function App() {
     return () => window.removeEventListener("popstate", handlePopState);
   }, []);
 
-  // Fetch updated content when idle so we NEVER block initial render, LCP or critical network chain
+  // Fetch updated content from server on mount so all visitors see edits
   useEffect(() => {
-    let timeoutId: ReturnType<typeof setTimeout> | undefined;
-    const fetchContent = () => {
-      fetchServerSiteContent().then((serverData) => {
-        if (serverData) {
-          setSiteContent(serverData);
-        }
-      });
-    };
-
-    if (typeof window !== "undefined" && "requestIdleCallback" in window) {
-      (window as any).requestIdleCallback(fetchContent, { timeout: 3000 });
-    } else {
-      timeoutId = setTimeout(fetchContent, 2000);
-    }
+    fetchServerSiteContent().then((serverData) => {
+      if (serverData) {
+        setSiteContent(serverData);
+      }
+    });
 
     const handleContentUpdate = () => {
       setSiteContent(getInitialSiteContent());
     };
     window.addEventListener("moockup-content-updated", handleContentUpdate);
-    return () => {
-      if (timeoutId) clearTimeout(timeoutId);
-      window.removeEventListener("moockup-content-updated", handleContentUpdate);
-    };
+    return () => window.removeEventListener("moockup-content-updated", handleContentUpdate);
   }, []);
 
   const handleOpenAudit = (initialUrl?: string) => {
@@ -143,53 +131,51 @@ export default function App() {
   };
 
   // If a dedicated service landing is selected, render it
-  if (activeLandingSlug && SERVICE_SLUGS.has(activeLandingSlug)) {
+  if (activeLandingSlug && SERVICE_LANDINGS[activeLandingSlug]) {
+    const landing = SERVICE_LANDINGS[activeLandingSlug];
     return (
-      <Suspense fallback={<div className="min-h-screen bg-[#090D16]" />}>
-        <ServiceLandingContainer 
-          slug={activeLandingSlug}
+      <>
+        <ServiceLandingPage 
+          landing={landing}
           onBack={handleBackToHome}
           onOpenAudit={() => handleOpenAudit()}
         />
-        {isAuditModalOpen && (
-          <AuditModal 
-            isOpen={isAuditModalOpen}
-            onClose={handleCloseAudit}
-            initialUrl={auditInitialUrl}
-          />
-        )}
+        <AuditModal 
+          isOpen={isAuditModalOpen}
+          onClose={handleCloseAudit}
+          initialUrl={auditInitialUrl}
+        />
         <LiveChat 
           isOpen={isChatOpen}
           onToggle={handleToggleChat}
           onOpenAudit={() => handleOpenAudit()}
         />
-      </Suspense>
+      </>
     );
   }
 
   // If a dedicated sector/local SEO landing is selected, render it
-  if (activeLandingSlug && SEO_SLUGS.has(activeLandingSlug)) {
+  if (activeLandingSlug && ALL_SEO_LANDINGS[activeLandingSlug]) {
+    const landing = ALL_SEO_LANDINGS[activeLandingSlug];
     return (
-      <Suspense fallback={<div className="min-h-screen bg-[#090D16]" />}>
-        <SeoLandingContainer 
-          slug={activeLandingSlug}
+      <>
+        <SeoLandingPageView 
+          landing={landing}
           onBack={handleBackToHome}
           onOpenAudit={() => handleOpenAudit()}
           onSelectOtherLanding={handleOpenLanding}
         />
-        {isAuditModalOpen && (
-          <AuditModal 
-            isOpen={isAuditModalOpen}
-            onClose={handleCloseAudit}
-            initialUrl={auditInitialUrl}
-          />
-        )}
+        <AuditModal 
+          isOpen={isAuditModalOpen}
+          onClose={handleCloseAudit}
+          initialUrl={auditInitialUrl}
+        />
         <LiveChat 
           isOpen={isChatOpen}
           onToggle={handleToggleChat}
           onOpenAudit={() => handleOpenAudit()}
         />
-      </Suspense>
+      </>
     );
   }
 
@@ -221,7 +207,7 @@ export default function App() {
           onOpenAudit={() => handleOpenAudit()}
         />
 
-        {/* User Section 2: "Perchè sceglierci?" 6-box Bento */}
+        {/* User Section 2: "Perchè sceglierci?" 6-box Bento matching uploaded screenshot */}
         <WhyChooseUsSection 
           onOpenAudit={() => handleOpenAudit()}
         />
@@ -232,39 +218,39 @@ export default function App() {
           onOpenChat={handleOpenChat}
         />
 
-        {/* Below-the-fold sections loaded seamlessly without delaying LCP or FCP */}
-        <Suspense fallback={null}>
-          {/* Portfolio & Projects Showcase */}
-          <PortfolioSection 
-            projects={siteContent.portfolio}
-            onOpenAudit={() => handleOpenAudit()}
-            onContactProject={handleContactProject}
-          />
+        {/* Portfolio & Projects Showcase */}
+        <PortfolioSection 
+          projects={siteContent.portfolio}
+          onOpenAudit={() => handleOpenAudit()}
+          onContactProject={handleContactProject}
+        />
 
-          {/* 4-Step Process & Guarantees */}
-          <ProcessSection 
-            onOpenAudit={() => handleOpenAudit()}
-          />
+        {/* 4-Step Process & Guarantees */}
+        <ProcessSection 
+          onOpenAudit={() => handleOpenAudit()}
+        />
 
-          {/* SEO Landing Directory: Settori & Località per dominare Google */}
-          <SeoDirectorySection 
-            onOpenLanding={handleOpenLanding}
-            onOpenAudit={() => handleOpenAudit()}
-          />
+        {/* SEO Landing Directory: Settori & Località per dominare Google */}
+        <SeoDirectorySection 
+          onOpenLanding={handleOpenLanding}
+          onOpenAudit={() => handleOpenAudit()}
+        />
 
-          {/* Interactive FAQ Section */}
-          <FaqSection 
-            onOpenAudit={() => handleOpenAudit()}
-            onOpenChat={handleOpenChat}
-          />
+        {/* Testimonials & Social Proof (temporarily hidden upon request) */}
+        {/* <TestimonialsSection /> */}
 
-          {/* Contact & Lead Conversion Form */}
-          <ContactSection 
-            initialService={selectedServiceForContact}
-            onOpenAudit={() => handleOpenAudit()}
-            onOpenChat={handleOpenChat}
-          />
-        </Suspense>
+        {/* Interactive FAQ Section */}
+        <FaqSection 
+          onOpenAudit={() => handleOpenAudit()}
+          onOpenChat={handleOpenChat}
+        />
+
+        {/* Contact & Lead Conversion Form */}
+        <ContactSection 
+          initialService={selectedServiceForContact}
+          onOpenAudit={() => handleOpenAudit()}
+          onOpenChat={handleOpenChat}
+        />
       </main>
 
       {/* Footer */}
@@ -274,21 +260,19 @@ export default function App() {
         onOpenLanding={handleOpenLanding}
       />
 
-      {/* Suspended Chat and Modals loaded on demand without impacting initial paint */}
-      <Suspense fallback={null}>
-        <LiveChat 
-          isOpen={isChatOpen}
-          onToggle={handleToggleChat}
-          onOpenAudit={() => handleOpenAudit()}
-        />
-        {isAuditModalOpen && (
-          <AuditModal 
-            isOpen={isAuditModalOpen}
-            onClose={handleCloseAudit}
-            initialUrl={auditInitialUrl}
-          />
-        )}
-      </Suspense>
+      {/* Live Chat Component */}
+      <LiveChat 
+        isOpen={isChatOpen}
+        onToggle={handleToggleChat}
+        onOpenAudit={() => handleOpenAudit()}
+      />
+
+      {/* Audit Modal (Lead Magnet) */}
+      <AuditModal 
+        isOpen={isAuditModalOpen}
+        onClose={handleCloseAudit}
+        initialUrl={auditInitialUrl}
+      />
     </div>
   );
 }
