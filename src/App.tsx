@@ -4,6 +4,11 @@ import { Hero } from "./components/Hero";
 import { ServicesGrid } from "./components/ServicesGrid";
 import { WhyChooseUsSection } from "./components/WhyChooseUsSection";
 import { AboutSeoSection } from "./components/AboutSeoSection";
+import { PortfolioSection } from "./components/PortfolioSection";
+import { ProcessSection } from "./components/ProcessSection";
+import { SeoDirectorySection } from "./components/SeoDirectorySection";
+import { FaqSection } from "./components/FaqSection";
+import { ContactSection } from "./components/ContactSection";
 import { Footer } from "./components/Footer";
 import { SERVICE_SLUGS, SEO_SLUGS } from "./data/slugs";
 import { 
@@ -12,12 +17,7 @@ import {
   EditableSiteContent 
 } from "./context/SiteContentContext";
 
-// Code-split below-the-fold sections, interactive modals, chat and landing page bundles
-const PortfolioSection = lazy(() => import("./components/PortfolioSection").then(m => ({ default: m.PortfolioSection })));
-const ProcessSection = lazy(() => import("./components/ProcessSection").then(m => ({ default: m.ProcessSection })));
-const SeoDirectorySection = lazy(() => import("./components/SeoDirectorySection").then(m => ({ default: m.SeoDirectorySection })));
-const FaqSection = lazy(() => import("./components/FaqSection").then(m => ({ default: m.FaqSection })));
-const ContactSection = lazy(() => import("./components/ContactSection").then(m => ({ default: m.ContactSection })));
+// Code-split only modal dialogs and secondary route landing page bundles
 const LiveChat = lazy(() => import("./components/LiveChat").then(m => ({ default: m.LiveChat })));
 const AuditModal = lazy(() => import("./components/AuditModal").then(m => ({ default: m.AuditModal })));
 const ServiceLandingContainer = lazy(() => import("./components/ServiceLandingContainer"));
@@ -123,7 +123,8 @@ export default function App() {
 
   const handleOpenLanding = (slug: string) => {
     setActiveLandingSlug(slug);
-    window.history.pushState({}, "", `/servizi/${slug}`);
+    const targetPath = SERVICE_SLUGS.has(slug) ? `/servizi/${slug}` : `/${slug}`;
+    window.history.pushState({}, "", targetPath);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -232,39 +233,36 @@ export default function App() {
           onOpenChat={handleOpenChat}
         />
 
-        {/* Below-the-fold sections loaded seamlessly without delaying LCP or FCP */}
-        <Suspense fallback={null}>
-          {/* Portfolio & Projects Showcase */}
-          <PortfolioSection 
-            projects={siteContent.portfolio}
-            onOpenAudit={() => handleOpenAudit()}
-            onContactProject={handleContactProject}
-          />
+        {/* Portfolio & Projects Showcase */}
+        <PortfolioSection 
+          projects={siteContent.portfolio}
+          onOpenAudit={() => handleOpenAudit()}
+          onContactProject={handleContactProject}
+        />
 
-          {/* 4-Step Process & Guarantees */}
-          <ProcessSection 
-            onOpenAudit={() => handleOpenAudit()}
-          />
+        {/* 4-Step Process & Guarantees */}
+        <ProcessSection 
+          onOpenAudit={() => handleOpenAudit()}
+        />
 
-          {/* SEO Landing Directory: Settori & Località per dominare Google */}
-          <SeoDirectorySection 
-            onOpenLanding={handleOpenLanding}
-            onOpenAudit={() => handleOpenAudit()}
-          />
+        {/* SEO Landing Directory: Settori & Località per dominare Google */}
+        <SeoDirectorySection 
+          onOpenLanding={handleOpenLanding}
+          onOpenAudit={() => handleOpenAudit()}
+        />
 
-          {/* Interactive FAQ Section */}
-          <FaqSection 
-            onOpenAudit={() => handleOpenAudit()}
-            onOpenChat={handleOpenChat}
-          />
+        {/* Interactive FAQ Section */}
+        <FaqSection 
+          onOpenAudit={() => handleOpenAudit()}
+          onOpenChat={handleOpenChat}
+        />
 
-          {/* Contact & Lead Conversion Form */}
-          <ContactSection 
-            initialService={selectedServiceForContact}
-            onOpenAudit={() => handleOpenAudit()}
-            onOpenChat={handleOpenChat}
-          />
-        </Suspense>
+        {/* Contact & Lead Conversion Form */}
+        <ContactSection 
+          initialService={selectedServiceForContact}
+          onOpenAudit={() => handleOpenAudit()}
+          onOpenChat={handleOpenChat}
+        />
       </main>
 
       {/* Footer */}

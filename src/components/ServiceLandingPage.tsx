@@ -173,11 +173,15 @@ export const ServiceLandingPage: React.FC<ServiceLandingPageProps> = ({
             </p>
           </div>
 
-          {/* Cover Visual Preview */}
-          <div className="mt-12 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl relative max-w-4xl mx-auto h-72 sm:h-96">
+          {/* Cover Visual Preview with Aspect-Ratio Container & Lazy Loading */}
+          <div className="mt-12 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl relative max-w-4xl mx-auto w-full aspect-[16/9] sm:aspect-[21/9] min-h-[260px] bg-slate-950">
             <img 
               src={landing.coverImage} 
               alt={landing.title}
+              width={1200}
+              height={514}
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover brightness-90"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#090D16] via-transparent to-transparent" />

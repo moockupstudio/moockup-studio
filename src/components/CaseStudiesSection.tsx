@@ -108,15 +108,18 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({
               className="bg-slate-900/80 border border-slate-800/90 rounded-2xl overflow-hidden hover:border-slate-700 transition-all duration-300 flex flex-col justify-between group shadow-xl hover:-translate-y-1"
             >
               <div>
-                {/* Hero Thumbnail */}
-                <div className="relative h-48 sm:h-52 overflow-hidden">
+                {/* Hero Thumbnail with Aspect-Ratio Container */}
+                <div className="relative w-full aspect-[16/10] overflow-hidden bg-slate-950">
                   <img
                     src={study.heroImage}
                     alt={study.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    width={640}
+                    height={400}
                     loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent pointer-events-none" />
                   
                   {/* Category Badge */}
                   <span className="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold bg-slate-950/80 backdrop-blur-md text-emerald-400 border border-emerald-500/30">
@@ -236,11 +239,14 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({
                   </div>
                 </div>
 
-                {/* Hero Image */}
-                <div className="h-64 sm:h-80 rounded-xl overflow-hidden">
+                {/* Hero Image with Aspect-Ratio Container */}
+                <div className="w-full aspect-[16/9] rounded-xl overflow-hidden bg-slate-950">
                   <img
                     src={activeModalCase.heroImage}
                     alt={activeModalCase.title}
+                    width={900}
+                    height={506}
+                    decoding="async"
                     className="w-full h-full object-cover"
                   />
                 </div>

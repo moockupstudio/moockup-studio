@@ -99,10 +99,14 @@ export const SeoDirectorySection: React.FC<SeoDirectorySectionProps> = ({
           {sectorItems.map((item) => {
             const Icon = getSectorIcon(item.slug);
             return (
-              <div
+              <a
                 key={item.slug}
-                onClick={() => onOpenLanding(item.slug)}
-                className="group relative rounded-2xl bg-slate-900/70 hover:bg-slate-900 border border-slate-800 hover:border-pink-500/50 p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-pink-600/10 cursor-pointer"
+                href={`/${item.slug}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onOpenLanding(item.slug);
+                }}
+                className="group relative rounded-2xl bg-slate-900/70 hover:bg-slate-900 border border-slate-800 hover:border-pink-500/50 p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-pink-600/10 cursor-pointer block text-left"
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
@@ -132,7 +136,7 @@ export const SeoDirectorySection: React.FC<SeoDirectorySectionProps> = ({
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                   </div>
                 </div>
-              </div>
+              </a>
             );
           })}
         </div>

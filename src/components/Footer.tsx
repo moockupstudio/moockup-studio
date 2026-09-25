@@ -52,67 +52,102 @@ export const Footer: React.FC<FooterProps> = ({
             </h4>
             <ul className="space-y-2 sm:space-y-2.5 text-xs">
               <li>
-                <button
-                  type="button"
-                  onClick={() => onOpenLanding ? onOpenLanding("brand-identity") : window.location.hash = "servizi"}
-                  className="hover:text-white transition-colors text-left cursor-pointer"
+                <a
+                  href="/servizi/brand-identity"
+                  onClick={(e) => {
+                    if (onOpenLanding) {
+                      e.preventDefault();
+                      onOpenLanding("brand-identity");
+                    }
+                  }}
+                  className="hover:text-white transition-colors text-left block cursor-pointer"
                 >
                   Brand Identity & Naming
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => onOpenLanding ? onOpenLanding("siti-web") : window.location.hash = "servizi"}
-                  className="hover:text-white transition-colors text-left cursor-pointer"
+                <a
+                  href="/servizi/siti-web"
+                  onClick={(e) => {
+                    if (onOpenLanding) {
+                      e.preventDefault();
+                      onOpenLanding("siti-web");
+                    }
+                  }}
+                  className="hover:text-white transition-colors text-left block cursor-pointer"
                 >
                   Creazione Siti Web & UI/UX Design
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => onOpenLanding ? onOpenLanding("e-commerce") : window.location.hash = "servizi"}
-                  className="hover:text-white transition-colors text-left cursor-pointer"
+                <a
+                  href="/servizi/e-commerce"
+                  onClick={(e) => {
+                    if (onOpenLanding) {
+                      e.preventDefault();
+                      onOpenLanding("e-commerce");
+                    }
+                  }}
+                  className="hover:text-white transition-colors text-left block cursor-pointer"
                 >
                   Sviluppo E-Commerce Shopify & Custom
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => onOpenLanding ? onOpenLanding("seo-organica") : window.location.hash = "servizi"}
-                  className="hover:text-white transition-colors text-left cursor-pointer"
+                <a
+                  href="/servizi/seo-organica"
+                  onClick={(e) => {
+                    if (onOpenLanding) {
+                      e.preventDefault();
+                      onOpenLanding("seo-organica");
+                    }
+                  }}
+                  className="hover:text-white transition-colors text-left block cursor-pointer"
                 >
                   Posizionamento SEO Organico su Google
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => onOpenLanding ? onOpenLanding("sem") : window.location.hash = "servizi"}
-                  className="hover:text-white transition-colors text-left cursor-pointer"
+                <a
+                  href="/servizi/sem"
+                  onClick={(e) => {
+                    if (onOpenLanding) {
+                      e.preventDefault();
+                      onOpenLanding("sem");
+                    }
+                  }}
+                  className="hover:text-white transition-colors text-left block cursor-pointer"
                 >
                   Campagne SEM & Google Ads
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => onOpenLanding ? onOpenLanding("social-media") : window.location.hash = "servizi"}
-                  className="hover:text-white transition-colors text-left cursor-pointer"
+                <a
+                  href="/servizi/social-media"
+                  onClick={(e) => {
+                    if (onOpenLanding) {
+                      e.preventDefault();
+                      onOpenLanding("social-media");
+                    }
+                  }}
+                  className="hover:text-white transition-colors text-left block cursor-pointer"
                 >
                   Social Media Marketing & Video Ads
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => onOpenLanding ? onOpenLanding("local-marketing") : window.location.hash = "servizi"}
-                  className="hover:text-white transition-colors text-left cursor-pointer"
+                <a
+                  href="/servizi/local-marketing"
+                  onClick={(e) => {
+                    if (onOpenLanding) {
+                      e.preventDefault();
+                      onOpenLanding("local-marketing");
+                    }
+                  }}
+                  className="hover:text-white transition-colors text-left block cursor-pointer"
                 >
                   Local Marketing & Presidio Territoriale
-                </button>
+                </a>
               </li>
             </ul>
           </div>
@@ -178,6 +213,159 @@ export const Footer: React.FC<FooterProps> = ({
               <div className="p-3 rounded-lg bg-slate-900 border border-slate-800">
                 <div className="font-semibold text-white">100% Proprietà Cliente</div>
                 <div className="text-[11px] text-slate-400">Nessun vincolo, codice di tua proprietà</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Local & Sector SEO Links Directory (Direct Crawlability for Googlebot) */}
+        <div className="mt-10 pt-8 border-t border-slate-800/80">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
+            <div>
+              <h5 className="uppercase font-bold text-slate-300 tracking-wider mb-2.5 text-[11px]">
+                Aree Territoriali & Sedi
+              </h5>
+              <div className="flex flex-wrap gap-x-4 gap-y-2 text-slate-400">
+                <a
+                  href="/realizzazione-siti-web-foggia"
+                  onClick={(e) => {
+                    if (onOpenLanding) {
+                      e.preventDefault();
+                      onOpenLanding("realizzazione-siti-web-foggia");
+                    }
+                  }}
+                  className="hover:text-fuchsia-400 transition-colors"
+                >
+                  Siti Web Foggia
+                </a>
+                <a
+                  href="/realizzazione-siti-web-bari"
+                  onClick={(e) => {
+                    if (onOpenLanding) {
+                      e.preventDefault();
+                      onOpenLanding("realizzazione-siti-web-bari");
+                    }
+                  }}
+                  className="hover:text-fuchsia-400 transition-colors"
+                >
+                  Web Agency Bari
+                </a>
+                <a
+                  href="/realizzazione-siti-web-lucera"
+                  onClick={(e) => {
+                    if (onOpenLanding) {
+                      e.preventDefault();
+                      onOpenLanding("realizzazione-siti-web-lucera");
+                    }
+                  }}
+                  className="hover:text-fuchsia-400 transition-colors"
+                >
+                  Siti Web Lucera
+                </a>
+                <a
+                  href="/realizzazione-siti-web-san-severo"
+                  onClick={(e) => {
+                    if (onOpenLanding) {
+                      e.preventDefault();
+                      onOpenLanding("realizzazione-siti-web-san-severo");
+                    }
+                  }}
+                  className="hover:text-fuchsia-400 transition-colors"
+                >
+                  Siti Web San Severo
+                </a>
+                <a
+                  href="/realizzazione-siti-web-san-giovanni-rotondo"
+                  onClick={(e) => {
+                    if (onOpenLanding) {
+                      e.preventDefault();
+                      onOpenLanding("realizzazione-siti-web-san-giovanni-rotondo");
+                    }
+                  }}
+                  className="hover:text-fuchsia-400 transition-colors"
+                >
+                  Siti Web San Giovanni Rotondo
+                </a>
+              </div>
+            </div>
+
+            <div>
+              <h5 className="uppercase font-bold text-slate-300 tracking-wider mb-2.5 text-[11px]">
+                Siti Web per Settore
+              </h5>
+              <div className="flex flex-wrap gap-x-4 gap-y-2 text-slate-400">
+                <a
+                  href="/siti-web-ristoranti"
+                  onClick={(e) => {
+                    if (onOpenLanding) {
+                      e.preventDefault();
+                      onOpenLanding("siti-web-ristoranti");
+                    }
+                  }}
+                  className="hover:text-pink-400 transition-colors"
+                >
+                  Ristoranti & Pizzerie
+                </a>
+                <a
+                  href="/siti-web-dentisti"
+                  onClick={(e) => {
+                    if (onOpenLanding) {
+                      e.preventDefault();
+                      onOpenLanding("siti-web-dentisti");
+                    }
+                  }}
+                  className="hover:text-pink-400 transition-colors"
+                >
+                  Dentisti & Studi Medici
+                </a>
+                <a
+                  href="/siti-web-avvocati"
+                  onClick={(e) => {
+                    if (onOpenLanding) {
+                      e.preventDefault();
+                      onOpenLanding("siti-web-avvocati");
+                    }
+                  }}
+                  className="hover:text-pink-400 transition-colors"
+                >
+                  Avvocati & Studi Legali
+                </a>
+                <a
+                  href="/siti-web-commercialisti"
+                  onClick={(e) => {
+                    if (onOpenLanding) {
+                      e.preventDefault();
+                      onOpenLanding("siti-web-commercialisti");
+                    }
+                  }}
+                  className="hover:text-pink-400 transition-colors"
+                >
+                  Commercialisti & Consulenti
+                </a>
+                <a
+                  href="/siti-web-hotel"
+                  onClick={(e) => {
+                    if (onOpenLanding) {
+                      e.preventDefault();
+                      onOpenLanding("siti-web-hotel");
+                    }
+                  }}
+                  className="hover:text-pink-400 transition-colors"
+                >
+                  Hotel & Strutture Ricettive
+                </a>
+                <a
+                  href="/siti-web-architetti"
+                  onClick={(e) => {
+                    if (onOpenLanding) {
+                      e.preventDefault();
+                      onOpenLanding("siti-web-architetti");
+                    }
+                  }}
+                  className="hover:text-pink-400 transition-colors"
+                >
+                  Architetti & Interior Design
+                </a>
               </div>
             </div>
           </div>
