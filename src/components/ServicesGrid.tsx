@@ -155,34 +155,25 @@ export const ServicesGrid: React.FC<ServicesGridProps> = ({
 
         {/* 12 Services Grid (4x3 on desktop, 6x2 on tablet/mobile: perfectly aligned with no missing slots) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
-          {services.map((service, index) => {
+          {services.map((service) => {
             const Icon = service.icon;
-            const isPriority = index < 2;
 
             return (
-              <a
+              <div
                 key={service.id}
-                href={`/servizi/${service.id}`}
-                onClick={(e) => {
+                onClick={() => {
                   if (onOpenLanding) {
-                    e.preventDefault();
                     onOpenLanding(service.id);
                   } else if (onSelectService) {
-                    e.preventDefault();
                     onSelectService(service.title);
                   }
                 }}
-                className="group relative w-full aspect-[4/5] sm:aspect-[3/4] min-h-[320px] rounded-2xl overflow-hidden border border-slate-800/90 hover:border-pink-500/60 shadow-xl transition-all duration-500 hover:-translate-y-1.5 cursor-pointer flex flex-col justify-end bg-slate-950 block text-left"
+                className="group relative h-80 sm:h-96 rounded-2xl overflow-hidden border border-slate-800/90 hover:border-pink-500/60 shadow-xl transition-all duration-500 hover:-translate-y-1.5 cursor-pointer flex flex-col justify-end"
               >
-                {/* Background Photography with Lazy Loading & Asynchronous Decoding */}
+                {/* Background Photography */}
                 <img
                   src={service.image}
                   alt={service.title}
-                  width={600}
-                  height={800}
-                  loading={isPriority ? "eager" : "lazy"}
-                  decoding="async"
-                  {...(isPriority ? { fetchPriority: "high" as const } : {})}
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out brightness-[0.85] group-hover:brightness-95"
                 />
 
@@ -218,7 +209,7 @@ export const ServicesGrid: React.FC<ServicesGridProps> = ({
                     <ArrowRight className="w-3.5 h-3.5" />
                   </div>
                 </div>
-              </a>
+              </div>
             );
           })}
         </div>

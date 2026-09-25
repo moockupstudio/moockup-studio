@@ -7,8 +7,9 @@
     <meta name="description" content="Realizzazione siti web moderni a Foggia e in tutta Italia, posizionamento SEO organico su Google e gestione campagne Google Ads ad alto ROI." />
     <meta name="keywords" content="realizzazione siti web, realizzazione siti web foggia, creazione siti web foggia, seo foggia, posizionamento google foggia, gestione campagne google ads, creazione campagne google ads, link building, agenzia web foggia, e-commerce foggia" />
     
-    <!-- Preconnect & DNS Prefetch for third-party resources -->
+    <!-- Privacy & Cookie Solution (asynchronous & deferred for zero render-blocking) -->
     <link rel="dns-prefetch" href="https://embeds.iubenda.com" />
+    <script async defer type="text/javascript" src="https://embeds.iubenda.com/widgets/66b39370-d571-4ce4-bb91-ae3de2707286.js"></script>
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -41,10 +42,14 @@
       }(window.location))
     </script>
     
-    <!-- Google Fonts: Plus Jakarta Sans with font-display=swap -->
+    <!-- Google Fonts: Plus Jakarta Sans with font-display=swap and optimized weights to eliminate render-blocking -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
+    </noscript>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="alternate icon" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/favicon.svg" />
@@ -192,10 +197,20 @@
     </script>
   </head>
   <body class="bg-[#090D16] text-[#E2E8F0] font-sans antialiased selection:bg-fuchsia-600 selection:text-white">
-    <div id="root"></div>
+    <div id="root">
+      <!-- Semantic crawler fallback for instantaneous LCP and search engine parsing before React mounts -->
+      <header class="sr-only">
+        <h1>Realizzazione Siti Web, SEO &amp; Campagne Google Ads | Moockup Studio</h1>
+        <p>Non Semplici Siti. Generiamo Successo. Sviluppiamo siti web ultra-veloci ottimizzati per la conversione (CRO), scaliamo il posizionamento organico su Google e moltiplichiamo il fatturato con campagne Google Ads guidate dal ROI a Foggia e in tutta Italia.</p>
+        <nav>
+          <a href="/servizi/siti-web">Realizzazione Siti Web</a>
+          <a href="/servizi/sem">Google Ads &amp; SEM</a>
+          <a href="/servizi/seo-organica">SEO &amp; Posizionamento Organico</a>
+          <a href="/servizi/e-commerce">E-Commerce Shopify &amp; Custom</a>
+        </nav>
+      </header>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
-    <!-- Privacy & Cookie Solution loaded without blocking first render or user interactions -->
-    <script async defer type="text/javascript" src="https://embeds.iubenda.com/widgets/66b39370-d571-4ce4-bb91-ae3de2707286.js"></script>
   </body>
 </html>
 

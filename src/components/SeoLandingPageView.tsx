@@ -198,14 +198,10 @@ export const SeoLandingPageView: React.FC<SeoLandingPageViewProps> = ({
 
           {/* Visual Showcase Card: only displayed on sector landing pages, removed for local city landings per user request */}
           {landing.category !== "localita" && (
-            <div className="mt-12 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl relative max-w-4xl mx-auto w-full aspect-[16/9] sm:aspect-[21/9] min-h-[260px] bg-slate-950">
+            <div className="mt-12 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl relative max-w-4xl mx-auto h-72 sm:h-96">
               <img 
                 src={landing.coverImage} 
                 alt={landing.title}
-                width={1200}
-                height={514}
-                loading="lazy"
-                decoding="async"
                 className="w-full h-full object-cover brightness-90"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#090D16] via-transparent to-transparent" />

@@ -85,6 +85,18 @@ for (const page of pagesToGenerate) {
       `<link rel="canonical" href="${fullUrl}" />`
     );
 
+  // In root container, provide initial crawler-readable semantic tags before React mounts
+  const semanticFallback = `<div id="root"><main class="sr-only"><h1>${escapeHtml(
+    page.heroHeadline || page.metaTitle
+  )}</h1><p>${escapeHtml(
+    page.heroSubheadline || page.metaDescription
+  )}</p></main></div>`;
+
+  customizedHtml = customizedHtml.replace(
+    /<div id="root"><\/div>/i,
+    semanticFallback
+  );
+
   // Target directory inside dist
   // E.g. /servizi/sem -> dist/servizi/sem/index.html
   // E.g. /siti-web-ristoranti -> dist/siti-web-ristoranti/index.html

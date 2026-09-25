@@ -101,31 +101,26 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
 
         {/* Projects Cards Grid (4x3 on desktop, 6x2 on mobile/tablet) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {filteredList.map((project, index) => {
+          {filteredList.map((project) => {
             const hasWebsite = Boolean(project.url);
-            const isPriority = index < 2;
 
             return (
               <div
                 key={project.id}
                 className="group relative bg-slate-900/80 border border-slate-800/90 hover:border-fuchsia-500/50 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-fuchsia-500/10 flex flex-col justify-between"
               >
-                {/* Aspect Ratio Image Preview Container (Prevents layout shift and boosts scroll performance) */}
+                {/* Image Preview Container */}
                 <div 
-                  className="relative w-full aspect-[16/10] overflow-hidden cursor-pointer bg-slate-950"
+                  className="relative h-56 sm:h-64 overflow-hidden cursor-pointer"
                   onClick={() => handleCardClick(project)}
                 >
                   <img
                     src={project.heroImage}
                     alt={`${project.title} - Realizzazione Sito Web & SEO`}
-                    width={640}
-                    height={400}
-                    loading={isPriority ? "eager" : "lazy"}
-                    decoding="async"
-                    {...(isPriority ? { fetchPriority: "high" as const } : {})}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
 
                   {/* Floating Category Tag */}
                   <div className="absolute top-3 left-3">
