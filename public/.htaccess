@@ -11,6 +11,10 @@
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
 
+  # Servi i file .html pre-renderizzati per URL puliti senza estensione
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.+?)/?$ $1.html [L]
+
   # Altrimenti reindirizza tutte le rotte all'index.html (per supportare le pagine /servizi/..., /siti-web-... ecc.)
   RewriteRule ^ index.html [L]
 </IfModule>

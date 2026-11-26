@@ -16,11 +16,13 @@ import {
 interface AboutSeoSectionProps {
   onOpenAudit: () => void;
   onOpenChat: () => void;
+  onOpenLanding?: (slug: string) => void;
 }
 
 export const AboutSeoSection: React.FC<AboutSeoSectionProps> = ({
   onOpenAudit,
   onOpenChat,
+  onOpenLanding,
 }) => {
   return (
     <section className="py-20 md:py-28 bg-[#070B14] border-t border-slate-800/80 relative overflow-hidden">
@@ -35,7 +37,7 @@ export const AboutSeoSection: React.FC<AboutSeoSectionProps> = ({
             <span>Autorità Digitale, Posizionamento & Performance</span>
           </div>
           <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight mb-5">
-            Realizzazione Siti Web, SEO & Google Ads a{" "}
+            Agenzia Marketing, Siti Web, SEO &amp; Google Ads a{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 via-pink-400 to-rose-400">
               Foggia e in Tutta Italia
             </span>
@@ -74,10 +76,18 @@ export const AboutSeoSection: React.FC<AboutSeoSectionProps> = ({
                 </li>
               </ul>
             </div>
-            <div className="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs text-fuchsia-400 font-semibold">
-              <span>Siti Web ad Alte Prestazioni</span>
-              <Zap className="w-4 h-4" />
-            </div>
+            <a
+              href="/servizi/siti-web"
+              onClick={(e) => {
+                if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || !onOpenLanding) return;
+                e.preventDefault();
+                onOpenLanding("siti-web");
+              }}
+              className="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs text-fuchsia-400 hover:text-fuchsia-300 font-semibold transition-colors"
+            >
+              <span>Realizzazione Siti Web Foggia &amp; Italia</span>
+              <ArrowRight className="w-4 h-4" />
+            </a>
           </div>
 
           {/* Pillar 2: SEO & Posizionamento su Google */}
@@ -107,10 +117,18 @@ export const AboutSeoSection: React.FC<AboutSeoSectionProps> = ({
                 </li>
               </ul>
             </div>
-            <div className="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs text-pink-400 font-semibold">
-              <span>Posizionamento nei Primi Risultati</span>
-              <TrendingUp className="w-4 h-4" />
-            </div>
+            <a
+              href="/servizi/seo-organica"
+              onClick={(e) => {
+                if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || !onOpenLanding) return;
+                e.preventDefault();
+                onOpenLanding("seo-organica");
+              }}
+              className="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs text-pink-400 hover:text-pink-300 font-semibold transition-colors"
+            >
+              <span>Agenzia SEO Foggia &amp; Posizionamento</span>
+              <ArrowRight className="w-4 h-4" />
+            </a>
           </div>
 
           {/* Pillar 3: Google Ads & Gestione Campagne SEM */}
@@ -140,10 +158,18 @@ export const AboutSeoSection: React.FC<AboutSeoSectionProps> = ({
                 </li>
               </ul>
             </div>
-            <div className="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs text-rose-400 font-semibold">
-              <span>Massimo Rendimento & Focus ROI</span>
-              <ShieldCheck className="w-4 h-4" />
-            </div>
+            <a
+              href="/servizi/sem"
+              onClick={(e) => {
+                if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || !onOpenLanding) return;
+                e.preventDefault();
+                onOpenLanding("sem");
+              }}
+              className="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs text-rose-400 hover:text-rose-300 font-semibold transition-colors"
+            >
+              <span>Agenzia Google Ads Foggia &amp; SEM</span>
+              <ArrowRight className="w-4 h-4" />
+            </a>
           </div>
 
           {/* Pillar 4: Link Building & Local SEO Foggia */}
@@ -173,10 +199,18 @@ export const AboutSeoSection: React.FC<AboutSeoSectionProps> = ({
                 </li>
               </ul>
             </div>
-            <div className="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs text-indigo-400 font-semibold">
-              <span>Autorevolezza & Presidio Territoriale</span>
-              <MapPin className="w-4 h-4" />
-            </div>
+            <a
+              href="/realizzazione-siti-web-foggia"
+              onClick={(e) => {
+                if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || !onOpenLanding) return;
+                e.preventDefault();
+                onOpenLanding("realizzazione-siti-web-foggia");
+              }}
+              className="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs text-indigo-400 hover:text-indigo-300 font-semibold transition-colors"
+            >
+              <span>Presidio Locale &amp; Web Agency Foggia</span>
+              <ArrowRight className="w-4 h-4" />
+            </a>
           </div>
         </div>
 

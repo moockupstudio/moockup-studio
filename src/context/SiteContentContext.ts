@@ -39,45 +39,47 @@ function sanitizeForLocalStorage(content: EditableSiteContent): EditableSiteCont
 }
 
 export const getInitialSiteContent = (): EditableSiteContent => {
-  try {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) {
-      const parsed = JSON.parse(stored);
-      // Always use PORTFOLIO_DATA as base to guarantee all new projects (Artemide, Romano Roppo, Foggia Calcio, MB Strategy, Montepeloso, Gringos, CAF365) are present
-      const storedMap = new Map<string, ProjectItem>((Array.isArray(parsed.portfolio) ? parsed.portfolio : []).map((p: ProjectItem) => [p.id, p]));
-      const mergedPortfolio = PORTFOLIO_DATA.map((defaultProj: ProjectItem) => {
-        const storedItem = storedMap.get(defaultProj.id);
-        if (storedItem) {
-          // If stored item has an image that is placeholder/unsplash, replace with defaultProj.heroImage
-          const isOutdatedImg = !storedItem.heroImage || 
-            storedItem.heroImage.endsWith("...") || 
-            storedItem.heroImage.includes("images.unsplash.com") ||
-            (defaultProj.heroImage && !storedItem.heroImage.startsWith("data:") && storedItem.heroImage !== defaultProj.heroImage);
-          return {
-            ...storedItem,
-            title: defaultProj.title,
-            client: defaultProj.client,
-            summary: defaultProj.summary,
-            url: defaultProj.url,
-            heroImage: isOutdatedImg ? defaultProj.heroImage : storedItem.heroImage,
-          };
-        }
-        return defaultProj;
-      });
+  if (typeof window !== "undefined" && typeof localStorage !== "undefined") {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        // Always use PORTFOLIO_DATA as base to guarantee all new projects (Artemide, Romano Roppo, Foggia Calcio, MB Strategy, Montepeloso, Gringos, CAF365) are present
+        const storedMap = new Map<string, ProjectItem>((Array.isArray(parsed.portfolio) ? parsed.portfolio : []).map((p: ProjectItem) => [p.id, p]));
+        const mergedPortfolio = PORTFOLIO_DATA.map((defaultProj: ProjectItem) => {
+          const storedItem = storedMap.get(defaultProj.id);
+          if (storedItem) {
+            // If stored item has an image that is placeholder/unsplash, replace with defaultProj.heroImage
+            const isOutdatedImg = !storedItem.heroImage || 
+              storedItem.heroImage.endsWith("...") || 
+              storedItem.heroImage.includes("images.unsplash.com") ||
+              (defaultProj.heroImage && !storedItem.heroImage.startsWith("data:") && storedItem.heroImage !== defaultProj.heroImage);
+            return {
+              ...storedItem,
+              title: defaultProj.title,
+              client: defaultProj.client,
+              summary: defaultProj.summary,
+              url: defaultProj.url,
+              heroImage: isOutdatedImg ? defaultProj.heroImage : storedItem.heroImage,
+            };
+          }
+          return defaultProj;
+        });
 
-      return {
-        agencyInfo: parsed.agencyInfo || AGENCY_INFO,
-        portfolio: mergedPortfolio,
-        services: Array.isArray(parsed.services) && parsed.services.length > 0 ? parsed.services : SERVICES_DATA,
-        faqs: FAQ_DATA,
-        heroBadge: (parsed.heroBadge && parsed.heroBadge !== "Specialisti Certificati in Sviluppo Web, SEO & Google Ads" && parsed.heroBadge !== "Agenzia Realizzazione Sito Web, SEO & Google Ads") ? parsed.heroBadge : "Agenzia Marketing, Siti Web, SEO & Google Ads",
-        heroTitleLine1: parsed.heroTitleLine1 || "Non Creiamo Semplici Siti.",
-        heroTitleHighlight: (parsed.heroTitleHighlight && parsed.heroTitleHighlight !== "Creiamo Macchine da Vendita.") ? parsed.heroTitleHighlight : "Creiamo Business Scalabili.",
-        heroSubtitle: parsed.heroSubtitle || "Sviluppiamo siti web ultra-veloci ottimizzati per la conversione (CRO), scaliamo il posizionamento organico su Google e moltiplichiamo il fatturato con campagne Google Ads guidate dal ROI.",
-      };
+        return {
+          agencyInfo: parsed.agencyInfo || AGENCY_INFO,
+          portfolio: mergedPortfolio,
+          services: Array.isArray(parsed.services) && parsed.services.length > 0 ? parsed.services : SERVICES_DATA,
+          faqs: FAQ_DATA,
+          heroBadge: (parsed.heroBadge && parsed.heroBadge !== "Specialisti Certificati in Sviluppo Web, SEO & Google Ads" && parsed.heroBadge !== "Agenzia Realizzazione Sito Web, SEO & Google Ads") ? parsed.heroBadge : "Agenzia Marketing Foggia • Siti Web, SEO & Google Ads",
+          heroTitleLine1: parsed.heroTitleLine1 || "Non Creiamo Semplici Siti.",
+          heroTitleHighlight: (parsed.heroTitleHighlight && parsed.heroTitleHighlight !== "Creiamo Macchine da Vendita.") ? parsed.heroTitleHighlight : "Creiamo Business Scalabili.",
+          heroSubtitle: parsed.heroSubtitle || "Sviluppiamo siti web ultra-veloci ottimizzati per la conversione (CRO), scaliamo il posizionamento organico su Google e moltiplichiamo il fatturato con campagne Google Ads guidate dal ROI.",
+        };
+      }
+    } catch (e) {
+      console.warn("Could not read site content from localStorage", e);
     }
-  } catch (e) {
-    console.warn("Could not read site content from localStorage", e);
   }
 
   return {
@@ -85,7 +87,7 @@ export const getInitialSiteContent = (): EditableSiteContent => {
     portfolio: PORTFOLIO_DATA,
     services: SERVICES_DATA,
     faqs: FAQ_DATA,
-    heroBadge: "Agenzia Marketing, Siti Web, SEO & Google Ads",
+    heroBadge: "Agenzia Marketing Foggia • Siti Web, SEO & Google Ads",
     heroTitleLine1: "Non Creiamo Semplici Siti.",
     heroTitleHighlight: "Creiamo Business Scalabili.",
     heroSubtitle: "Sviluppiamo siti web ultra-veloci ottimizzati per la conversione (CRO), scaliamo il posizionamento organico su Google e moltiplichiamo il fatturato con campagne Google Ads guidate dal ROI.",
@@ -100,10 +102,12 @@ export const fetchServerSiteContent = async (): Promise<EditableSiteContent | nu
       const data = await res.json();
       if (data.success && data.content) {
         // Safely cache a lightweight version in localStorage
-        try {
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(sanitizeForLocalStorage(data.content)));
-        } catch (quotaErr) {
-          console.warn("localStorage quota reached; using in-memory state", quotaErr);
+        if (typeof localStorage !== "undefined") {
+          try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(sanitizeForLocalStorage(data.content)));
+          } catch (quotaErr) {
+            console.warn("localStorage quota reached; using in-memory state", quotaErr);
+          }
         }
         return data.content;
       }
@@ -128,19 +132,24 @@ export const saveSiteContent = async (content: EditableSiteContent) => {
   }
 
   // 2. Safe save to localStorage wrapped in try/catch to avoid any browser errors
-  try {
-    const safeContent = sanitizeForLocalStorage(content);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(safeContent));
-  } catch (e) {
-    // If quota is still exceeded or storage blocked, safely clear or skip without throwing
-    console.warn("localStorage quota full - content successfully saved to server instead.", e);
+  if (typeof localStorage !== "undefined") {
+    try {
+      const safeContent = sanitizeForLocalStorage(content);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(safeContent));
+    } catch (e) {
+      // If quota is still exceeded or storage blocked, safely clear or skip without throwing
+      console.warn("localStorage quota full - content successfully saved to server instead.", e);
+    }
   }
 
   // 3. Notify app components
-  window.dispatchEvent(new Event("moockup-content-updated"));
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new Event("moockup-content-updated"));
+  }
 };
 
 export const resetSiteContent = () => {
+  if (typeof localStorage === "undefined" || typeof window === "undefined") return;
   try {
     localStorage.removeItem(STORAGE_KEY);
     localStorage.removeItem("moockup_custom_portfolio_images");

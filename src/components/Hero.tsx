@@ -22,7 +22,7 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ 
   onOpenAudit,
-  badge = "Agenzia Marketing, Siti Web, SEO & Google Ads",
+  badge = "Agenzia Marketing Foggia • Siti Web, SEO & Google Ads",
   titleLine1 = "Non Creiamo Semplici Siti.",
   titleHighlight = "Creiamo Business Scalabili.",
   subtitle = "Sviluppiamo siti web ultra-veloci ottimizzati per la conversione (CRO), scaliamo il posizionamento organico su Google e moltiplichiamo il fatturato con campagne Google Ads guidate dal ROI."
@@ -63,10 +63,10 @@ export const Hero: React.FC<HeroProps> = ({
             </span>
           </div>
 
-          {/* Main H1 Headline for SEO and high impact: Realizzazione Siti Web, SEO & Google Ads */}
+          {/* Main H1 Headline for SEO and high impact: Agenzia Marketing, Realizzazione Siti Web, SEO & Google Ads Foggia */}
           <h1 className="font-display font-extrabold tracking-tight mb-5 sm:mb-6">
             <span className="block text-xs sm:text-sm font-bold uppercase tracking-widest text-fuchsia-400 mb-2">
-              Realizzazione Siti Web, SEO & Campagne Google Ads
+              Agenzia Marketing Foggia • Realizzazione Siti Web, SEO &amp; Google Ads
             </span>
             <span className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-[1.18] sm:leading-[1.1]">
               <span className="block sm:inline">Non Semplici Siti.</span>{" "}

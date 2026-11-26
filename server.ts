@@ -221,6 +221,13 @@ async function startServer() {
     const distPath = path.join(process.cwd(), "dist");
     app.use(express.static(distPath));
     app.get("*", (req, res) => {
+      const cleanPath = req.path.replace(/^\/+|\/+$/g, "");
+      if (cleanPath) {
+        const staticHtmlPath = path.join(distPath, `${cleanPath}.html`);
+        if (fs.existsSync(staticHtmlPath)) {
+          return res.sendFile(staticHtmlPath);
+        }
+      }
       res.sendFile(path.join(distPath, "index.html"));
     });
   }

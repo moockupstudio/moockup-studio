@@ -20,10 +20,10 @@ export const SERVICE_LANDINGS: Record<string, ServiceLanding> = {
     slug: "siti-web",
     title: "Creazione Siti Web & E-Commerce",
     badge: "Web Design Sartoriale",
-    heroHeadline: "Siti Web Ultra-Veloci, Mobile-First e Progettati per Convertire",
-    heroSubheadline: "Non realizziamo semplici vetrine: creiamo piattaforme ad altissime prestazioni con PageSpeed 95+, UX studiata su misura e codice di tua esclusiva proprietà.",
-    metaTitle: "Creazione Siti Web Foggia & Italia | Moockup Studio",
-    metaDescription: "Realizziamo siti web professionali ultra-veloci, responsive e ottimizzati per generare conversioni. Scopri i nostri standard a Foggia e in tutta Italia.",
+    heroHeadline: "Realizzazione Siti Web Foggia & Italia: Veloci e Progettati per Convertire",
+    heroSubheadline: "Non realizziamo semplici vetrine: creiamo siti web a Foggia e in tutta Italia ad altissime prestazioni con PageSpeed 95+, UX studiata su misura e codice di tua esclusiva proprietà.",
+    metaTitle: "Realizzazione Siti Web Foggia & Italia | Moockup Studio",
+    metaDescription: "Realizzazione siti web a Foggia e in tutta Italia: design su misura, velocità PageSpeed 95+, SEO tecnica e codice 100% tuo. Richiedi un preventivo gratuito.",
     coverImage: "https://images.unsplash.com/photo-1519222970733-f546218fa6d7?auto=format&fit=crop&w=1200&q=80",
     tagline: "Un sito web lento o mal strutturato costa clienti ogni giorno. Noi creiamo la tua macchina da vendite digitale.",
     whyChoosePoints: [
@@ -50,11 +50,11 @@ export const SERVICE_LANDINGS: Record<string, ServiceLanding> = {
   "sem": {
     slug: "sem",
     title: "SEM & Campagne Google Ads",
-    badge: "Specialisti Gestione Campagne Google Ads",
-    heroHeadline: "Campagne Google Ads ad Alto Rendimento: Più Lead Qualificati, Meno Sprechi",
-    heroSubheadline: "Gestiamo campagne Search, Shopping e Performance Max con approccio scientifico orientato al ROAS e monitoraggio avanzato sia Client-Side che Server-Side.",
-    metaTitle: "Campagne Google Ads & SEM Foggia | Moockup Studio",
-    metaDescription: "Specialisti in campagne Google Ads. Massimizza il ritorno sull'investimento pubblicitario con campagne Search e Performance Max ad alto rendimento.",
+    badge: "Agenzia Google Ads Foggia & Italia",
+    heroHeadline: "Agenzia Google Ads Foggia: Più Lead Qualificati, Meno Sprechi",
+    heroSubheadline: "Come agenzia Google Ads a Foggia gestiamo campagne Search, Shopping e Performance Max orientate al ROAS con tracciamento avanzato Client-Side e Server-Side.",
+    metaTitle: "Agenzia Google Ads Foggia & Campagne SEM | Moockup Studio",
+    metaDescription: "Agenzia Google Ads a Foggia: campagne Search, Shopping e Performance Max orientate al ROI con tracciamento Server-Side. Riduci gli sprechi e genera lead.",
     coverImage: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&w=1200&q=80",
     tagline: "Basta bruciare budget con click curiosi: intercettiamo solo persone con un chiaro e immediato intento di acquisto.",
     whyChoosePoints: [
@@ -81,11 +81,11 @@ export const SERVICE_LANDINGS: Record<string, ServiceLanding> = {
   "seo-organica": {
     slug: "seo-organica",
     title: "SEO & Posizionamento su Google",
-    badge: "Visibilità Naturale Scalabile",
-    heroHeadline: "Conquista la Prima Pagina di Google e Ricevi Clienti Ogni Giorno Senza Pagare i Click",
-    heroSubheadline: "Strategie di Search Engine Optimization tecnica, architettura informativa semantica e contenuti ad altissimo intento commerciale per dominare il tuo mercato.",
-    metaTitle: "Consulenza SEO & Posizionamento Google Foggia | Moockup Studio",
-    metaDescription: "Scala i primi posti su Google con strategie SEO tecniche, audit approfonditi e ottimizzazione per la ricerca locale e nazionale.",
+    badge: "Agenzia SEO Foggia & Posizionamento",
+    heroHeadline: "Agenzia SEO Foggia: Conquista la Prima Pagina di Google",
+    heroSubheadline: "La nostra agenzia SEO a Foggia cura Search Engine Optimization tecnica, Local SEO Google Maps, link building e contenuti commerciali per scalare i risultati organici.",
+    metaTitle: "Agenzia SEO Foggia & Posizionamento Google | Moockup Studio",
+    metaDescription: "Agenzia SEO a Foggia specializzata in posizionamento organico su Google, audit tecnico, Local SEO Google Maps e link building. Richiedi analisi gratuita.",
     coverImage: "https://images.unsplash.com/photo-1616499452581-cc7f8e3dd3c9?auto=format&fit=crop&w=1200&q=80",
     tagline: "Il traffico organico è l'asset digitale più profittevole e duraturo per qualsiasi azienda.",
     whyChoosePoints: [
@@ -386,6 +386,36 @@ export const SERVICE_LANDINGS: Record<string, ServiceLanding> = {
       { q: "Come si integra la televisione con il sito web e il digitale?", a: "Inseriamo grafiche con URL chiaro, QR code dinamici in sovrimpressione e avviamo campagne digitali sincronizzate per intercettare chi cerca il brand dal cellulare durante la messa in onda." },
       { q: "Quali fasce orarie sono più efficaci per la mia attività?", a: "Selezioniamo fasce orarie ad alta concentrazione di pubblico in target (es. telegiornali regionali, programmi di attualità, eventi sportivi o trasmissioni tematiche)." },
       { q: "Fornite i certificati di avvenuta trasmissione dello spot?", a: "Sì, l'emittente rilascia i borderò e la certificazione notarile delle messe in onda effettive concordate nel piano media." }
+    ]
+  },
+  "gadget-merchandising": {
+    slug: "gadget-merchandising",
+    title: "Gadget Aziendali, Merchandising & Print",
+    badge: "Materiale Promozionale & Stampa",
+    heroHeadline: "Gadget Aziendali, Abbigliamento Tecnico & Stampa Coordinata",
+    heroSubheadline: "Dall'abbigliamento personalizzato per aziende e team sportivi fino a packaging, shopper, biglietti da visita e gadget promozionali coordinati con il tuo brand.",
+    metaTitle: "Gadget Aziendali, Merchandising & Stampa Foggia | Moockup Studio",
+    metaDescription: "Personalizzazione gadget aziendali, abbigliamento da lavoro, packaging e stampa coordinata a Foggia e in tutta Italia. Qualità premium e consegna rapida.",
+    coverImage: "https://images.unsplash.com/photo-1668959813575-8e68053e2fcc?auto=format&fit=crop&w=1200&q=80",
+    tagline: "Porta il tuo brand fuori dallo schermo: materiali tattili e gadget curati nei dettagli che restano impressi ai clienti.",
+    whyChoosePoints: [
+      { title: "Stampa Serigrafica, Ricamo & Termosaldato", desc: "Tecniche di personalizzazione resistenti e ad alta definizione cromatica per tessuti tecnici, divise e merchandising." },
+      { title: "Coerenza Totale con la Brand Identity", desc: "Gestiamo direttamente colori Pantone, loghi vettoriali e impaginati esecutivi senza passaggi intermedi." },
+      { title: "Packaging, Buste & Materiale Ristorazione", desc: "Scatole pizza, menu fisici, shopper brandizzate, tazze, penne e welcome kit aziendali su misura." },
+      { title: "Forniture per Aziende ed Eventi a Foggia e Italia", desc: "Produzioni scalabili dalle piccole tirature fino alle grandi forniture per fiere, inaugurazioni e sponsorizzazioni." },
+    ],
+    deliverables: [
+      "Bozze grafiche e mockup 3D pre-stampa inclusi",
+      "Abbigliamento personalizzato (t-shirt, polo, felpe, divise)",
+      "Stampa coordinata (biglietti da visita, brochure, cataloghi, packaging)",
+      "Spedizione tracciata o consegna diretta a Foggia e provincia",
+    ],
+    metricsTarget: "Immagine fisica coordinata e ricordo spontaneo del brand ad ogni contatto",
+    faqList: [
+      { q: "Quali tipologie di gadget e abbigliamento personalizzate?", a: "Realizziamo t-shirt, polo, felpe, abbigliamento sportivo e da lavoro, shopper, tazze, borracce, penne, agende, packaging personalizzato e stampati pubblicitari." },
+      { q: "Preparate voi la grafica e gli esecutivi di stampa?", a: "Sì, il nostro studio grafico controlla o adatta il tuo logo vettoriale e ti invia sempre una bozza digitale per approvazione prima di mandare in produzione." },
+      { q: "C'è un quantitativo minimo ordinabile?", a: "Lavoriamo in modo flessibile sia per piccole forniture dedicate a studi e locali sia per grandi produzioni aziendali ed eventi." },
+      { q: "Effettuate consegne a Foggia e spedizioni nel resto d'Italia?", a: "Sì, consegniamo direttamente su Foggia e provincia e spediamo con corriere espresso in tutta Italia." },
     ]
   }
 };

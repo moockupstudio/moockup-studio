@@ -14,28 +14,32 @@ import {
   Target 
 } from "lucide-react";
 import { Logo } from "./Logo";
+import { buildServiceLandingJsonLd, updateDocumentSeoMeta } from "../utils/seoMeta";
 
 interface ServiceLandingPageProps {
   landing: ServiceLanding;
   onBack: () => void;
   onOpenAudit: () => void;
+  onOpenLanding?: (slug: string) => void;
 }
 
 export const ServiceLandingPage: React.FC<ServiceLandingPageProps> = ({
   landing,
   onBack,
   onOpenAudit,
+  onOpenLanding,
 }) => {
-  // Update document title and description dynamically for SEO
+  // Update document title, description, canonical, OG tags, and JSON-LD dynamically for SEO
   useEffect(() => {
-    document.title = landing.metaTitle;
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute("content", landing.metaDescription);
-    }
+    const route = `/servizi/${landing.slug}`;
+    updateDocumentSeoMeta({
+      title: landing.metaTitle,
+      description: landing.metaDescription,
+      path: route,
+    });
     window.scrollTo({ top: 0, behavior: "smooth" });
 
-    // Inject dedicated Service Schema.org JSON-LD
+    // Inject dedicated Service + FAQ + Breadcrumb Schema.org JSON-LD
     const scriptId = "service-jsonld";
     let script = document.getElementById(scriptId) as HTMLScriptElement | null;
     if (!script) {
@@ -44,26 +48,7 @@ export const ServiceLandingPage: React.FC<ServiceLandingPageProps> = ({
       script.type = "application/ld+json";
       document.head.appendChild(script);
     }
-    script.textContent = JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "name": landing.title,
-      "serviceType": landing.badge,
-      "provider": {
-        "@type": "LocalBusiness",
-        "name": "Moockup Studio",
-        "url": "https://www.moockup.it",
-        "telephone": "+39 348 6520380",
-        "email": "moockupstudio@gmail.com"
-      },
-      "description": landing.metaDescription,
-      "areaServed": "IT",
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "EUR",
-        "availability": "https://schema.org/InStock"
-      }
-    });
+    script.textContent = JSON.stringify(buildServiceLandingJsonLd(landing, route));
 
     return () => {
       // Clean up dynamic schema when leaving landing page
@@ -93,14 +78,19 @@ export const ServiceLandingPage: React.FC<ServiceLandingPageProps> = ({
       <header className="sticky top-0 z-40 bg-[#090D16]/90 backdrop-blur-md border-b border-slate-800/80 py-3 px-4 sm:px-8">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <button
-              onClick={onBack}
+            <a
+              href="/"
+              onClick={(e) => {
+                if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+                e.preventDefault();
+                onBack();
+              }}
               id="landing-back-home-btn"
               className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white text-xs font-semibold border border-slate-700/60 transition-all cursor-pointer"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Tutti i Servizi</span>
-            </button>
+            </a>
             <div className="hidden sm:block">
               <Logo size="sm" showTagline={false} />
             </div>
@@ -316,13 +306,48 @@ export const ServiceLandingPage: React.FC<ServiceLandingPageProps> = ({
             </button>
           </div>
 
+          <div className="pt-6 border-t border-slate-800/80 space-y-3">
+            <div className="text-[11px] uppercase tracking-wider text-slate-500 font-semibold">
+              Scopri anche i servizi collegati di Moockup Studio
+            </div>
+            <div className="flex flex-wrap items-center justify-center gap-2">
+              {[
+                { slug: "siti-web", label: "Realizzazione Siti Web Foggia", isService: true },
+                { slug: "seo-organica", label: "Agenzia SEO Foggia", isService: true },
+                { slug: "sem", label: "Agenzia Google Ads Foggia", isService: true },
+                { slug: "e-commerce", label: "E-Commerce Shopify & Custom", isService: true },
+                { slug: "realizzazione-siti-web-foggia", label: "Web Agency Foggia", isService: false },
+              ]
+                .filter((item) => item.slug !== landing.slug)
+                .map((item) => (
+                  <a
+                    key={item.slug}
+                    href={item.isService ? `/servizi/${item.slug}` : `/${item.slug}`}
+                    onClick={(e) => {
+                      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || !onOpenLanding) return;
+                      e.preventDefault();
+                      onOpenLanding(item.slug);
+                    }}
+                    className="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 text-xs text-slate-300 hover:text-white transition-colors"
+                  >
+                    {item.label}
+                  </a>
+                ))}
+            </div>
+          </div>
+
           <div className="pt-4">
-            <button
-              onClick={onBack}
+            <a
+              href="/"
+              onClick={(e) => {
+                if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+                e.preventDefault();
+                onBack();
+              }}
               className="text-xs text-slate-400 hover:text-white transition-colors underline cursor-pointer"
             >
               ← Torna alla Homepage di Moockup Studio
-            </button>
+            </a>
           </div>
         </div>
       </section>

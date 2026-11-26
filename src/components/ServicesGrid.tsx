@@ -97,7 +97,7 @@ export const ServicesGrid: React.FC<ServicesGridProps> = ({
       tag: "Outdoor & Visibilità Locale",
     },
     {
-      id: "social-media-marketing",
+      id: "social-media",
       title: "Social Media",
       subtitle: "Meta Ads, TikTok & Crescita Community",
       image: "https://images.unsplash.com/photo-1645849017333-abc9c24522b2?auto=format&fit=crop&w=800&q=80",
@@ -159,12 +159,16 @@ export const ServicesGrid: React.FC<ServicesGridProps> = ({
             const Icon = service.icon;
 
             return (
-              <div
+              <a
                 key={service.id}
-                onClick={() => {
+                href={`/servizi/${service.id}`}
+                onClick={(e) => {
+                  if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
                   if (onOpenLanding) {
+                    e.preventDefault();
                     onOpenLanding(service.id);
                   } else if (onSelectService) {
+                    e.preventDefault();
                     onSelectService(service.title);
                   }
                 }}
@@ -174,6 +178,7 @@ export const ServicesGrid: React.FC<ServicesGridProps> = ({
                 <img
                   src={service.image}
                   alt={service.title}
+                  loading="lazy"
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out brightness-[0.85] group-hover:brightness-95"
                 />
 
@@ -209,7 +214,7 @@ export const ServicesGrid: React.FC<ServicesGridProps> = ({
                     <ArrowRight className="w-3.5 h-3.5" />
                   </div>
                 </div>
-              </div>
+              </a>
             );
           })}
         </div>

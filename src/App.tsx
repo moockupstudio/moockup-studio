@@ -22,22 +22,36 @@ import {
   fetchServerSiteContent,
   EditableSiteContent 
 } from "./context/SiteContentContext";
+import { HOME_META, updateDocumentSeoMeta } from "./utils/seoMeta";
 
-export default function App() {
+function resolveLandingSlug(rawPath: string, rawHash = ""): string | null {
+  const path = rawPath.replace(/^\/+|\/+$/g, "");
+  const hash = rawHash.replace(/^#\/?|\/+$/g, "");
+  const cleanPath = path.startsWith("servizi/") ? path.replace("servizi/", "") : path;
+  const cleanHash = hash.startsWith("servizi/") ? hash.replace("servizi/", "") : hash;
+  const candidate = cleanPath || cleanHash;
+  if (candidate && (SERVICE_LANDINGS[candidate] || ALL_SEO_LANDINGS[candidate])) {
+    return candidate;
+  }
+  return null;
+}
+
+interface AppProps {
+  initialPath?: string;
+}
+
+export default function App({ initialPath }: AppProps = {}) {
   const [siteContent, setSiteContent] = useState<EditableSiteContent>(getInitialSiteContent);
   const [isAuditModalOpen, setIsAuditModalOpen] = useState(false);
   const [auditInitialUrl, setAuditInitialUrl] = useState("");
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [selectedServiceForContact, setSelectedServiceForContact] = useState<string>("");
   const [activeLandingSlug, setActiveLandingSlug] = useState<string | null>(() => {
-    // Check initial URL pathname or hash (e.g., /servizi/siti-web or /siti-web-ristoranti or #/servizi/siti-web)
-    const path = window.location.pathname.replace(/^\//, "");
-    const hash = window.location.hash.replace(/^#\/?/, "");
-    const cleanPath = path.startsWith("servizi/") ? path.replace("servizi/", "") : path;
-    const cleanHash = hash.startsWith("servizi/") ? hash.replace("servizi/", "") : hash;
-    const candidate = cleanPath || cleanHash;
-    if (candidate && (SERVICE_LANDINGS[candidate] || ALL_SEO_LANDINGS[candidate])) {
-      return candidate;
+    if (initialPath !== undefined) {
+      return resolveLandingSlug(initialPath);
+    }
+    if (typeof window !== "undefined") {
+      return resolveLandingSlug(window.location.pathname, window.location.hash);
     }
     return null;
   });
@@ -45,16 +59,7 @@ export default function App() {
   // Listen to popstate (back/forward browser buttons)
   useEffect(() => {
     const handlePopState = () => {
-      const path = window.location.pathname.replace(/^\//, "");
-      const hash = window.location.hash.replace(/^#\/?/, "");
-      const cleanPath = path.startsWith("servizi/") ? path.replace("servizi/", "") : path;
-      const cleanHash = hash.startsWith("servizi/") ? hash.replace("servizi/", "") : hash;
-      const candidate = cleanPath || cleanHash;
-      if (candidate && (SERVICE_LANDINGS[candidate] || ALL_SEO_LANDINGS[candidate])) {
-        setActiveLandingSlug(candidate);
-      } else {
-        setActiveLandingSlug(null);
-      }
+      setActiveLandingSlug(resolveLandingSlug(window.location.pathname, window.location.hash));
     };
     window.addEventListener("popstate", handlePopState);
     return () => window.removeEventListener("popstate", handlePopState);
@@ -74,6 +79,17 @@ export default function App() {
     window.addEventListener("moockup-content-updated", handleContentUpdate);
     return () => window.removeEventListener("moockup-content-updated", handleContentUpdate);
   }, []);
+
+  // Keep Homepage SEO tags in sync when returning to "/"
+  useEffect(() => {
+    if (!activeLandingSlug) {
+      updateDocumentSeoMeta({
+        title: HOME_META.title,
+        description: HOME_META.description,
+        path: "/",
+      });
+    }
+  }, [activeLandingSlug]);
 
   const handleOpenAudit = (initialUrl?: string) => {
     if (initialUrl) {
@@ -111,22 +127,19 @@ export default function App() {
 
   const handleOpenLanding = (slug: string) => {
     setActiveLandingSlug(slug);
-    window.history.pushState({}, "", `/servizi/${slug}`);
+    const targetUrl = SERVICE_LANDINGS[slug] ? `/servizi/${slug}` : `/${slug}`;
+    window.history.pushState({}, "", targetUrl);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleBackToHome = () => {
     setActiveLandingSlug(null);
     window.history.pushState({}, "", "/");
-    // Restore default homepage meta
-    document.title = "Realizzazione Siti Web, SEO & Google Ads | MOOCKUP";
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute(
-        "content",
-        "Realizzazione siti web moderni a Foggia e in tutta Italia, posizionamento SEO organico su Google e gestione campagne Google Ads ad alto ROI."
-      );
-    }
+    updateDocumentSeoMeta({
+      title: HOME_META.title,
+      description: HOME_META.description,
+      path: "/",
+    });
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -139,6 +152,7 @@ export default function App() {
           landing={landing}
           onBack={handleBackToHome}
           onOpenAudit={() => handleOpenAudit()}
+          onOpenLanding={handleOpenLanding}
         />
         <AuditModal 
           isOpen={isAuditModalOpen}
@@ -216,6 +230,7 @@ export default function App() {
         <AboutSeoSection 
           onOpenAudit={() => handleOpenAudit()}
           onOpenChat={handleOpenChat}
+          onOpenLanding={handleOpenLanding}
         />
 
         {/* Portfolio & Projects Showcase */}

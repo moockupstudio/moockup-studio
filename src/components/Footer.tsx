@@ -51,69 +51,35 @@ export const Footer: React.FC<FooterProps> = ({
               I Nostri Servizi
             </h4>
             <ul className="space-y-2 sm:space-y-2.5 text-xs">
-              <li>
-                <button
-                  type="button"
-                  onClick={() => onOpenLanding ? onOpenLanding("brand-identity") : window.location.hash = "servizi"}
-                  className="hover:text-white transition-colors text-left cursor-pointer"
-                >
-                  Brand Identity & Naming
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => onOpenLanding ? onOpenLanding("siti-web") : window.location.hash = "servizi"}
-                  className="hover:text-white transition-colors text-left cursor-pointer"
-                >
-                  Creazione Siti Web & UI/UX Design
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => onOpenLanding ? onOpenLanding("e-commerce") : window.location.hash = "servizi"}
-                  className="hover:text-white transition-colors text-left cursor-pointer"
-                >
-                  Sviluppo E-Commerce Shopify & Custom
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => onOpenLanding ? onOpenLanding("seo-organica") : window.location.hash = "servizi"}
-                  className="hover:text-white transition-colors text-left cursor-pointer"
-                >
-                  Posizionamento SEO Organico su Google
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => onOpenLanding ? onOpenLanding("sem") : window.location.hash = "servizi"}
-                  className="hover:text-white transition-colors text-left cursor-pointer"
-                >
-                  Campagne SEM & Google Ads
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => onOpenLanding ? onOpenLanding("social-media") : window.location.hash = "servizi"}
-                  className="hover:text-white transition-colors text-left cursor-pointer"
-                >
-                  Social Media Marketing & Video Ads
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => onOpenLanding ? onOpenLanding("local-marketing") : window.location.hash = "servizi"}
-                  className="hover:text-white transition-colors text-left cursor-pointer"
-                >
-                  Local Marketing & Presidio Territoriale
-                </button>
-              </li>
+              {[
+                { slug: "siti-web", label: "Realizzazione Siti Web Foggia & Italia" },
+                { slug: "seo-organica", label: "Agenzia SEO & Posizionamento Google" },
+                { slug: "sem", label: "Agenzia Google Ads & Campagne SEM" },
+                { slug: "e-commerce", label: "Sviluppo E-Commerce Shopify & Custom" },
+                { slug: "cro-tracking", label: "CRO & Tracciamento Avanzato" },
+                { slug: "brand-identity", label: "Brand Identity & Naming" },
+                { slug: "social-media", label: "Social Media Marketing & Meta Ads" },
+                { slug: "local-marketing", label: "Local Marketing & Cartellonistica" },
+                { slug: "blog-content", label: "Blog & Content Marketing" },
+                { slug: "digital-pr", label: "Digital PR & Link Building" },
+                { slug: "newsletter-edm", label: "Email Marketing Automation" },
+                { slug: "tv-ads", label: "TV Ads & Spot Video" },
+                { slug: "gadget-merchandising", label: "Gadget Aziendali & Print" },
+              ].map((item) => (
+                <li key={item.slug}>
+                  <a
+                    href={`/servizi/${item.slug}`}
+                    onClick={(e) => {
+                      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || !onOpenLanding) return;
+                      e.preventDefault();
+                      onOpenLanding(item.slug);
+                    }}
+                    className="hover:text-white transition-colors text-left"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -183,14 +149,37 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
         </div>
 
-        {/* Bottom copyright - Mobile friendly & cleanly wrapped */}
-        <div className="mt-8 sm:mt-10 pt-5 sm:pt-6 border-t border-slate-800/80 flex flex-col items-center sm:flex-row sm:justify-between gap-3 text-xs text-slate-400 text-center sm:text-left">
+        {/* Bottom copyright & discreet local SEO links */}
+        <div className="mt-8 sm:mt-10 pt-5 sm:pt-6 border-t border-slate-800/80 flex flex-col items-center lg:flex-row lg:justify-between gap-3 text-xs text-slate-400 text-center lg:text-left">
           <div className="leading-relaxed">
             <span>© 2026 MOOCKUP STUDIO | P.IVA 04242600718</span>
             <span className="block sm:inline sm:before:content-['\00a0-\00a0'] text-slate-500 sm:text-slate-400">
               Tutti i diritti riservati.
             </span>
           </div>
+          <nav aria-label="Aree servite" className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[11px] text-slate-500">
+            <span>Presidio territoriale:</span>
+            {[
+              { slug: "realizzazione-siti-web-foggia", label: "Foggia" },
+              { slug: "realizzazione-siti-web-lucera", label: "Lucera" },
+              { slug: "realizzazione-siti-web-san-severo", label: "San Severo" },
+              { slug: "realizzazione-siti-web-san-giovanni-rotondo", label: "San Giovanni Rotondo" },
+              { slug: "realizzazione-siti-web-bari", label: "Bari" },
+            ].map((loc) => (
+              <a
+                key={loc.slug}
+                href={`/${loc.slug}`}
+                onClick={(e) => {
+                  if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || !onOpenLanding) return;
+                  e.preventDefault();
+                  onOpenLanding(loc.slug);
+                }}
+                className="hover:text-slate-300 transition-colors"
+              >
+                {loc.label}
+              </a>
+            ))}
+          </nav>
         </div>
       </div>
     </footer>
